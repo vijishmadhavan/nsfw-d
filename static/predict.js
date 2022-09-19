@@ -1,5 +1,3 @@
-import * as nsfwjs from 'nsfwjs'
-
 let imageLoaded = false;
 $("#image-selector").change(function () {
 	imageLoaded = false;
@@ -21,8 +19,7 @@ $( document ).ready(async function () {
 	modelLoaded = false;
 	$('.progress-bar').show();
     console.log( "Loading model..." );
-    const model = await nsfwjs.load('/model/');
-
+    model = await tf.loadLayersModel('model/model.json');
     console.log( "Model loaded." );
 	$('.progress-bar').hide();
 	modelLoaded = true;
@@ -32,22 +29,12 @@ $("#predict-button").click(async function () {
 	if (!modelLoaded) { alert("The model must be loaded first"); return; }
 	if (!imageLoaded) { alert("Please select an image first"); return; }
 	
-	//let image = $('#selected-image').get(0);
-        const img = document.getElementById('#selected-image')
-
-	
+	let image = $('#selected-image').get(0);
 	
 	// Pre-process the image
 	console.log( "Loading image..." );
-	//let tensor = tf.browser.fromPixels(image, 3)
-		//.resizeNearestNeighbor([224, 224]) // change the image size
-		//.expandDims()
-		//.toFloat()
-		//.reverse(-1); // RGB -> BGR
-	//let predictions = await model.classify(image)
-	const predictions = await model.classify(img)
-
-	//let predictions = await model.predict(tensor).data();
+	let tensor = tf.browser.fromPixels(image)
+	let predictions = await model.predict(tensor).data();
 	console.log(predictions);
 	let top5 = Array.from(predictions)
 		.map(function (p, i) { // this is Array.map
