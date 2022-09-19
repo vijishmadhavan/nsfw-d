@@ -21,7 +21,7 @@ $( document ).ready(async function () {
 	modelLoaded = false;
 	$('.progress-bar').show();
     console.log( "Loading model..." );
-    model = await nsfwjs.load('/model/');
+    const model = await nsfwjs.load('/model/');
 
     console.log( "Model loaded." );
 	$('.progress-bar').hide();
@@ -32,7 +32,10 @@ $("#predict-button").click(async function () {
 	if (!modelLoaded) { alert("The model must be loaded first"); return; }
 	if (!imageLoaded) { alert("Please select an image first"); return; }
 	
-	let image = $('#selected-image').get(0);
+	//let image = $('#selected-image').get(0);
+        const img = document.getElementById('#selected-image')
+
+	
 	
 	// Pre-process the image
 	console.log( "Loading image..." );
@@ -41,7 +44,9 @@ $("#predict-button").click(async function () {
 		//.expandDims()
 		//.toFloat()
 		//.reverse(-1); // RGB -> BGR
-	let predictions = await model.classify(image)
+	//let predictions = await model.classify(image)
+	const predictions = await model.classify(img)
+
 	//let predictions = await model.predict(tensor).data();
 	console.log(predictions);
 	let top5 = Array.from(predictions)
