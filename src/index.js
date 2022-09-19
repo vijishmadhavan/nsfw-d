@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import * as tf from '@tensorflow/tfjs';
+import * as nsfwjs from 'nsfwjs'
 import {loadGraphModel} from '@tensorflow/tfjs-converter';
 import "./styles.css";
 tf.setBackend('webgl');
@@ -11,7 +12,8 @@ async function load_model() {
     // It's possible to load the model locally or from a repo
     // You can choose whatever IP and PORT you want in the "http://127.0.0.1:8080/model.json" just set it before in your https server
     //const model = await loadGraphModel("http://127.0.0.1:8080/model.json");
-    const model = await loadGraphModel("https://raw.githubusercontent.com/hugozanini/TFJS-object-detection/master/models/kangaroo-detector/model.json");
+    const model = await nsfwjs.load("https://raw.githubusercontent.com/vijishmadhavan/nsfw-detector/master/models/model.json");
+    
     return model;
   }
 
