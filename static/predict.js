@@ -1,4 +1,3 @@
-import * as tf from "@tensorflow/tfjs";
 import {loadGraphModel} from '@tensorflow/tfjs-converter';
 
 
@@ -23,7 +22,7 @@ $( document ).ready(async function () {
 	modelLoaded = false;
 	$('.progress-bar').show();
     console.log( "Loading model..." );
-    model = await tf.loadGraphModel('model/model.json');
+    model = await tf.loadLayersModel('model/model.json');
     console.log( "Model loaded." );
 	$('.progress-bar').hide();
 	modelLoaded = true;
