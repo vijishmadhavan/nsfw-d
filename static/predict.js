@@ -21,7 +21,7 @@ $( document ).ready(async function () {
 	modelLoaded = false;
 	$('.progress-bar').show();
     console.log( "Loading model..." );
-    model = await nsfwjs.load('model/model.json');
+    model = await nsfwjs.load();
     console.log( "Model loaded." );
 	$('.progress-bar').hide();
 	modelLoaded = true;
