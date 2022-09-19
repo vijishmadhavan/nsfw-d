@@ -43,3 +43,6 @@ $("#predict-button").click(async function () {
 	console.log('Predictions: ', predictions);
 
 });
+
+<pre>Checkout console.log output for results!</pre>
+
