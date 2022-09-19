@@ -1,3 +1,5 @@
+import * as tf from "@tensorflow/tfjs";
+
 let imageLoaded = false;
 $("#image-selector").change(function () {
 	imageLoaded = false;
