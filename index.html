@@ -1,0 +1,71 @@
+<!doctype html>
+
+<head>
+  <title>TensorFlow.js: Using a pretrained MobileNet</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../shared/tfjs-examples.css" />
+</head>
+
+<style>
+  .pred-container {
+    margin-bottom: 20px;
+  }
+
+  .pred-container > div {
+    display: inline-block;
+    margin-right: 20px;
+    vertical-align: top;
+  }
+
+  .row {
+    display: table-row;
+  }
+  .cell {
+    display: table-cell;
+    padding-right: 20px;
+  }
+
+  #file-container {
+    margin-bottom: 20px;
+  }
+</style>
+
+<body>
+  <div class="tfjs-example-container">
+    <section class='title-area'>
+      <h1>TensorFlow.js: Using a pretrained MobileNet</h1>
+    </section>
+
+    <section>
+      <p class='section-head'>Description</p>
+      <p>
+        This demo uses the pretrained MobileNet_25_224 model from Keras which you can find
+        <a href="https://d1zv2aa70wpiur.cloudfront.net/tfjs_quant_nsfw_mobilenet/">here</a>.
+
+        It is not trained to recognize human faces. For best performance, upload images of objects
+        like piano, coffee mugs, bottles, etc. You can see all the objects types it has been trained to recognize in <a
+          href="https://github.com/vijishmadhavan/nsfw-detector/blob/master/nsfw_classes.js">nsfw_classes.js</a>.
+      </p>
+    </section>
+
+    <section>
+      <p class='section-head'>Status</p>
+      <div id="status"></div>
+    </section>
+
+    <section>
+      <p class='section-head'>Model Output</p>
+
+      <div id="file-container" style="display: none">
+        Upload an image: <input type="file" id="files" name="files[]" multiple />
+      </div>
+
+      <div id="predictions"></div>
+
+      <img style="display: none" id="cat" src="cat.jpg" width=224 height=224 />
+    </section>
+
+    <script type="module" src="index.js"></script>
+  </div>
+</body>
