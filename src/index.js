@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import * as tf from '@tensorflow/tfjs';
+//import * as tf from '@tensorflow/tfjs';
 import * as nsfwjs from 'nsfwjs'
-import {loadGraphModel} from '@tensorflow/tfjs-converter';
+//import {loadGraphModel} from '@tensorflow/tfjs-converter';
 import "./styles.css";
 tf.setBackend('webgl');
 
