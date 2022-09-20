@@ -1,3 +1,5 @@
+import * as nsfwjs from 'nsfwjs'
+
 let imageLoaded = false;
 $("#image-selector").change(function () {
 	imageLoaded = false;
@@ -33,21 +35,16 @@ $("#predict-button").click(async function () {
 	
 	// Pre-process the image
 	console.log( "Loading image..." );
-	let tensor = tf.browser.fromPixels(image)
-	let predictions = await model.predict(tensor).data();
-	console.log(predictions);
-	let top5 = Array.from(predictions)
-		.map(function (p, i) { // this is Array.map
-			return {
-				probability: p,
-				className: TARGET_CLASSES[i] // we are selecting the value from the obj
-			};
-		}).sort(function (a, b) {
-			return b.probability - a.probability;
-		}).slice(0, 2);
+	
+	
+	const img = document.getElementById('image')
 
-	$("#prediction-list").empty();
-	top5.forEach(function (p) {
-		$("#prediction-list").append(`<li>${p.className}: ${p.probability.toFixed(6)}</li>`);
-		});
-});
+	// Load model from my S3.
+	// See the section hosting the model files on your site.
+	const model = await nsfwjs.load()
+
+	// Classify the image
+	const predictions = await model.classify(img)
+	console.log('Predictions: ', predictions)
+	
+    // Display the predictions in the DOM.});
