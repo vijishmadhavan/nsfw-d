@@ -1,5 +1,5 @@
 {
-  "name": "tfjs-cv-objectdetection",
+  "name": "nsfw-detector5",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SaschaDittmann/tfjs-cv-objectdetection.git"
+    "url": "git+https://github.com/vijishmadhavan/nsfw-detector5.git"
   },
   "author": "Sascha Dittmann",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SaschaDittmann/tfjs-cv-objectdetection/issues"
+    "url": "https://github.com/vijishmadhavan/nsfw-detector5/issues"
   },
-  "homepage": "https://github.com/SaschaDittmann/tfjs-cv-objectdetection#readme",
+  "homepage": "https://github.com/vijishmadhavan/nsfw-detector5#readme",
   "dependencies": {
     "express": "^4.17.1"
   },
