@@ -1,5 +1,5 @@
 {
-  "name": "tfjs-customvision",
+  "name": "nsfw-detector10",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
