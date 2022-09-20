@@ -27,7 +27,7 @@ $( document ).ready(async function () {
 	$('.progress-bar').html("Loading Model");
 	$('.progress-bar').show();
     console.log( "Loading model..." );
-	model = await tf.loadGraphModel('model/model.json', {onProgress: showProgress});
+	model = await tf.loadLayersModel('model/model.json', {onProgress: showProgress});
 	is_new_od_model = model.inputs.length == 3;
 	console.log( "Model loaded." );
 	$('.progress-bar').hide();
