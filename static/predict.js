@@ -33,11 +33,7 @@ $("#predict-button").click(async function () {
 	
 	// Pre-process the image
 	console.log( "Loading image..." );
-	let tensor = tf.browser.fromPixels(image, 3)
-		.resizeNearestNeighbor([224, 224]) // change the image size
-		.expandDims()
-		.toFloat()
-		.reverse(-1); // RGB -> BGR
+	let tensor = tf.browser.fromPixels(image)
 	let predictions = await model.predict(tensor).data();
 	console.log(predictions);
 	let top5 = Array.from(predictions)
