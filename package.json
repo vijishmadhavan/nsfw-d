@@ -1,27 +1,23 @@
 {
-  "name": "nsfwjs",
-  "version": "2.4.2",
-  "unpkg": "dist/nsfwjs.min.js",
-  "description": "Detect NSFW content client-side",
+  "name": "tfjs-customvision",
+  "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "yarn build && jest",
-    "lint": "tslint -p . -t verbose",
-    "shipit": "yarn build && yarn scriptbundle && yarn minbundle && np",
-    "build": "tsc --skipLibCheck",
-    "toc": "doctoc .",
-    "contributors:add": "all-contributors add",
-    "contributors:generate": "all-contributors generate",
-    "prep": "yarn && yarn build && cd example/nsfw_demo/ && yarn add ../../ && cd -",
-    "scriptbundle": "browserify ./dist/nsfwjs.js --standalone nsfwjs --outfile ./dist/bundle.js",
-    "minbundle": "terser dist/bundle.js --compress --mangle --output dist/nsfwjs.min.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/infinitered/nsfwjs.git"
+    "url": "git+https://github.com/SaschaDittmann/tfjs-customvision.git"
   },
+  "author": "Sascha Dittmann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SaschaDittmann/tfjs-customvision/issues"
+  },
+  "homepage": "https://github.com/SaschaDittmann/tfjs-customvision#readme",
   "dependencies": {
-    "@nsfw-filter/gif-frames": "1.0.2"
+    "express": "^4.17.1"
   },
   "peerDependencies": {
     "@tensorflow/tfjs": "^3.18.0"
