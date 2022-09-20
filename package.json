@@ -1,5 +1,5 @@
 {
-  "name": "nsfw-detector5",
+  "name": "nsfw-detector8",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vijishmadhavan/nsfw-detector5.git"
+    "url": "git+https://github.com/vijishmadhavan/nsfw-detector8.git"
   },
   "author": "Sascha Dittmann",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vijishmadhavan/nsfw-detector5/issues"
+    "url": "https://github.com/vijishmadhavan/nsfw-detector8/issues"
   },
-  "homepage": "https://github.com/vijishmadhavan/nsfw-detector5#readme",
+  "homepage": "https://github.com/vijishmadhavan/nsfw-detector8#readme",
   "dependencies": {
     "express": "^4.17.1"
   },
