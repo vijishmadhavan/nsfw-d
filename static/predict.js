@@ -1,4 +1,3 @@
-import * as nsfwjs from 'nsfwjs'
 
 let imageLoaded = false;
 $("#image-selector").change(function () {
