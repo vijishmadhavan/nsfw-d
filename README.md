@@ -1,5 +1,7 @@
 # nsfw-detector
 
+https://vijishmadhavan.github.io/nsfw-det.github.io/
+
 ## Setup 
 
 Prepare the node environments:
