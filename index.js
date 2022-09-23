@@ -14,9 +14,11 @@ const NSFW_CLASSES = {
   4: 'sexy',
 };
 
+
+
 let nsfwnet;
 const nsfwnetDemo = async () => {
-  status('Loading model...');
+  //status('Loading model...');
 
   // nsfwnet = await tf.loadModel(MOBILENET_MODEL_PATH);
   nsfwnet = await tf.loadGraphModel(NSFWNET_MODEL_PATH, NSFWNET_WEIGHTS_PATH);
@@ -51,7 +53,7 @@ const nsfwnetDemo = async () => {
  * probabilities of the top K classes.
  */
 async function predict(imgElement) {
-  status('Predicting...');
+  //status('Predicting...');
 
   const startTime = performance.now();
   const logits = tf.tidy(() => {
@@ -77,7 +79,7 @@ async function predict(imgElement) {
   // Convert logits to probabilities and class names.
   const classes = await getTopKClasses(logits, TOPK_PREDICTIONS);
   const totalTime = performance.now() - startTime;
-  status(`Done in ${Math.floor(totalTime)}ms`);
+  //status(`Done in ${Math.floor(totalTime)}ms`);
 
   // Show the classes in the DOM.
   showResults(imgElement, classes);
@@ -107,10 +109,10 @@ async function getTopKClasses(logits, topK) {
   }
 
   const topClassesAndProbs = [];
-  for (let i = 0; i < topkIndices.length; i++) {
+  for (let i = 0; i < 1; i++) {
     topClassesAndProbs.push({
-      className: NSFW_CLASSES[topkIndices[i]],
-      probability: topkValues[i]
+      className: NSFW_CLASSES[topkIndices[0]]
+      //probability: topkValues[0]
     })
   }
   return topClassesAndProbs;
@@ -120,13 +122,16 @@ async function getTopKClasses(logits, topK) {
 // UI
 //
 
+
 function showResults(imgElement, classes) {
+
   const predictionContainer = document.createElement('div');
   predictionContainer.className = 'pred-container';
+  
 
   const imgContainer = document.createElement('div');
-  imgContainer.appendChild(imgElement);
-  predictionContainer.appendChild(imgContainer);
+  //imgContainer.appendChild(imgElement);
+  //predictionContainer.appendChild(imgContainer);
 
   const probsContainer = document.createElement('div');
   for (let i = 0; i < classes.length; i++) {
@@ -135,21 +140,43 @@ function showResults(imgElement, classes) {
 
     const classElement = document.createElement('div');
     classElement.className = 'cell';
-    classElement.innerText = classes[i].className;
-    row.appendChild(classElement);
+    //classElement.innerText = classes[i].className;    
+    
+    if(classes[i].className == "hentai")
+    {const textnode = document.createTextNode("NSFW");
+    classElement.appendChild(textnode);
+    row.appendChild(classElement);}
+    else if(classes[i].className == "porn")
+    {const textnode = document.createTextNode("NSFW");
+    classElement.appendChild(textnode)
+    row.appendChild(classElement);}
+    else 
+    {const textnode = document.createTextNode("");
+    //classElement.appendChild(textnode)
+    imgContainer.appendChild(imgElement);}
+    predictionContainer.appendChild(imgContainer);
+    
+    row.appendChild(imgContainer);
 
-    const probsElement = document.createElement('div');
-    probsElement.className = 'cell';
-    probsElement.innerText = classes[i].probability.toFixed(3);
-    row.appendChild(probsElement);
+    
+    //const probsElement = document.createElement('div');
+    //probsElement.className = 'cell';
+    //probsElement.innerText = classes[i].probability.toFixed(3);
+    //row.appendChild(probsElement);
 
     probsContainer.appendChild(row);
   }
   predictionContainer.appendChild(probsContainer);
 
-  predictionsElement.insertBefore(
-      predictionContainer, predictionsElement.firstChild);
+  // remove predictionsElement's last child node (if it exists) and append the new one 
+  if (predictionsElement.childNodes.length > 0) {
+    predictionsElement.removeChild(predictionsElement.childNodes[0]);
+  }
+
+  predictionsElement.appendChild(
+      predictionContainer);
 }
+
 
 const filesElement = document.getElementById('files');
 filesElement.addEventListener('change', evt => {
@@ -177,9 +204,13 @@ filesElement.addEventListener('change', evt => {
   }
 });
 
+
 const demoStatusElement = document.getElementById('status');
 const status = msg => demoStatusElement.innerText = msg;
 
 const predictionsElement = document.getElementById('predictions');
+
+
+
 
 nsfwnetDemo();
