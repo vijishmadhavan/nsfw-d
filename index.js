@@ -214,3 +214,4 @@ const predictionsElement = document.getElementById('predictions');
 
 
 nsfwnetDemo();
+
