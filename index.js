@@ -205,8 +205,8 @@ filesElement.addEventListener('change', evt => {
 });
 
 
-const demoStatusElement = document.getElementById('status');
-const status = msg => demoStatusElement.innerText = msg;
+//const demoStatusElement = document.getElementById('status');
+//const status = msg => demoStatusElement.innerText = msg;
 
 const predictionsElement = document.getElementById('predictions');
 
