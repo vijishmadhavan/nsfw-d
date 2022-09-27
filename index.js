@@ -55,7 +55,6 @@ const nsfwnetDemo = async () => {
 async function predict(imgElement) {
   //status('Predicting...');
 
-  const startTime = performance.now();
   const logits = tf.tidy(() => {
 
     // tf.fromPixels() returns a Tensor from an image element.
@@ -78,7 +77,6 @@ async function predict(imgElement) {
 
   // Convert logits to probabilities and class names.
   const classes = await getTopKClasses(logits, TOPK_PREDICTIONS);
-  const totalTime = performance.now() - startTime;
   //status(`Done in ${Math.floor(totalTime)}ms`);
 
   // Show the classes in the DOM.
@@ -151,18 +149,13 @@ function showResults(imgElement, classes) {
     classElement.appendChild(textnode)
     row.appendChild(classElement);}
     else 
-    {const textnode = document.createTextNode("");
-    //classElement.appendChild(textnode)
+    {    //classElement.appendChild(textnode)
     imgContainer.appendChild(imgElement);}
     predictionContainer.appendChild(imgContainer);
     
     row.appendChild(imgContainer);
 
     
-    //const probsElement = document.createElement('div');
-    //probsElement.className = 'cell';
-    //probsElement.innerText = classes[i].probability.toFixed(3);
-    //row.appendChild(probsElement);
 
     probsContainer.appendChild(row);
   }
@@ -188,7 +181,6 @@ filesElement.addEventListener('change', evt => {
       continue;
     }
     let reader = new FileReader();
-    const idx = i;
     // Closure to capture the file information.
     reader.onload = e => {
       // Fill the image & call predict.
@@ -213,5 +205,5 @@ const predictionsElement = document.getElementById('predictions');
 
 
 
-nsfwnetDemo();
 
+nsfwnetDemo();
