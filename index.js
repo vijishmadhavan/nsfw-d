@@ -55,7 +55,7 @@ async function predict(imgElement) {
 
   const classes = await getTopKClasses(logits, TOPK_PREDICTIONS);
 
-  imageIsSfw(classes);
+  display(classes);
 }
 
 
@@ -77,29 +77,26 @@ async function getTopKClasses(logits, topK) {
   }
 
   const topClassesAndProbs = [];
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < topkIndices.length; i++) {
     topClassesAndProbs.push({
-      className: NSFW_CLASSES[topkIndices[0]]
+      className: NSFW_CLASSES[topkIndices[i]],
+      probability: topkValues[i]
     })
   }
   return topClassesAndProbs;
 }
 
 
-
-function imageIsSfw(classes) {
-  if(classes[0].className == "hentai")
-  {console.log("NSFW");}
-  else if(classes[0].className =="porn")
-  {console.log("NSFW");}
-  else
-  {console.log("SFW");}
+function display(classes){
+const a = [];
+for (let i = 0; i < classes.length; i++){
+  // console log classes
+  a.push({
+    className: classes[i].className,
+    probability: classes[i].probability});
 }
 
-
- 
-const predictionsElement = document.getElementById('predictions');
-
-
+console.log(a)
+}
 
 nsfwnetDemo();
