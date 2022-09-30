@@ -89,12 +89,9 @@ async function getTopKClasses(logits, topK) {
 
 
 function display(classes){
-for (let i = 0; i < classes.length; i++){
-  const classPrediction =
-      classes[i].className + ': ' + classes[i].probability.toFixed(2) * 100 + '%';
-    console.log(classPrediction);
+  console.log(classes);
 }
-}
+
 
 
 
