@@ -58,31 +58,25 @@ async function predict(imgElement) {
 }
 
 
-async function getTopKClasses(logits, topK) {
+async function getTopKClasses(logits, topK){
   const values = await logits.data();
-
-  const valuesAndIndices = [];
-  for (let i = 0; i < values.length; i++) {
-    valuesAndIndices.push({value: values[i], index: i});
+  sortArray = Array.from(values).map((value, index) => {
+    return {
+      value: value,
+      index: index
+    };
   }
-  valuesAndIndices.sort((a, b) => {
+  ).sort((a, b) => {
     return b.value - a.value;
-  });
-  const topkValues = new Float32Array(topK);
-  const topkIndices = new Int32Array(topK);
-  for (let i = 0; i < topK; i++) {
-    topkValues[i] = valuesAndIndices[i].value;
-    topkIndices[i] = valuesAndIndices[i].index;
-  }
+  }).slice(0, topK);
 
-  const topClassesAndProbs = [];
-  for (let i = 0; i < topkIndices.length; i++) {
-    topClassesAndProbs.push({
-      className: NSFW_CLASSES[topkIndices[i]],
-      probability: topkValues[i]
-    })
+  return sortArray.map(x => {
+    return {
+      className: NSFW_CLASSES[x.index],
+      probability: x.value
+    };
   }
-  return topClassesAndProbs;
+  );
 }
 
 
@@ -91,7 +85,6 @@ async function getTopKClasses(logits, topK) {
 function display(classes){
   console.log(classes);
 }
-
 
 
 
