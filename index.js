@@ -1,4 +1,3 @@
-
 const NSFWNET_MODEL_PATH ='model/tensorflowjs_model.pb';
 const NSFWNET_WEIGHTS_PATH ='model/weights_manifest.json';
 
@@ -87,16 +86,16 @@ async function getTopKClasses(logits, topK) {
 }
 
 
+
+
 function display(classes){
-const a = [];
 for (let i = 0; i < classes.length; i++){
-  // console log classes
-  a.push({
-    className: classes[i].className,
-    probability: classes[i].probability});
+  const classPrediction =
+      classes[i].className + ': ' + classes[i].probability.toFixed(2) * 100 + '%';
+    console.log(classPrediction);
+}
 }
 
-console.log(a)
-}
+
 
 nsfwnetDemo();
